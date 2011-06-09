@@ -2,15 +2,15 @@
 # Author:       Bill JaJa
 # Purpose:      Monoter the web status, send a alert mail when it's not available.
 
-#��shell�ű����ڼ����վ���������ԭ���ǰ��̶�Ƶ�ʲ�ͣ���ʸ�����URL������վ���ɷ���ʱ�Զ����趨���䷢�͸澯�ʼ���֪ͨ�û���
-#�������ֶΣ��ű��ڶ����������������������ֶΣ�
-#  EMAIL�����ո澯��Ϣ��email��ַ��
-#  LOG_FILE����־�ļ�������ʹ�þ���·��������web_status_`date ��+%Y%m��`.log��������Ϊ��λ�ָ���־����web_status_201105.log
-#  TMP_EMAIL����ʱ�ʼ��ļ���ͬ������ʹ�þ���·������������Ŀ¼��дȨ�޼��ɡ�
-#ʹ�÷�����
-#  �ű��������������������һ������Ϊ�����վ��URL���ڶ�������Ϊ��ʱʱ�䣨��ѡ������Ϊ��λ�������ڶԶ����վ���м��ʱ���ӣ���
-#  ���˽ű����ӵ�����ϵͳ��crontab���棬�������趨����Ƶ�ʣ�����2����һ�Ρ����ж����վ���أ���crontab�������Ӷ��м��ɣ�
-#  ÿ��URLһ�У�����Ϊͬʱ��������վ���м�أ�
+#此shell脚本用于监控网站运行情况，原理是按固定频率不停访问给出的URL，当网站不可访问时自动给设定邮箱发送告警邮件以通知用户。
+#可配置字段，脚本第二段中有如下三个可配置字段：
+#  EMAIL：接收告警信息的email地址。
+#  LOG_FILE：日志文件，建议使用绝对路径；最后的web_status_`date ‘+%Y%m’`.log代表以月为单位分割日志，如web_status_201105.log
+#  TMP_EMAIL：临时邮件文件，同样建议使用绝对路径，保持所在目录有写权限即可。
+#使用方法：
+#  脚本后面需跟两个参数：第一个参数为监控网站的URL，第二个参数为延时时间（可选，以秒为单位，建议在对多个网站进行监控时添加），
+#  将此脚本添加到操作系统的crontab里面，按需求设定运行频率，建议2分钟一次。若有多个网站需监控，在crontab里面添加多行即可，
+#  每个URL一行，如下为同时对三个网站进行监控：
 #  */2 * * * * sh /var/monitor/web_monitor.sh http://www.qq.com
 #  */2 * * * * sh /var/monitor/web_monitor.sh http://www.qqq.com 5
 #  */2 * * * * sh /var/monitor/web_monitor.sh http://www.qqqq.com 10
