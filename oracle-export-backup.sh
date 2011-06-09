@@ -9,6 +9,10 @@ EXP_LOG="/export/home/oracle/bakdata/log/meg.export.`date +%Y%m%d%H%M%S`.log"
 EXP_FILE="meg.export.`date +%Y%m%d%H%M%S`.dmp"
 HOLD_DAY=50
 
+# fill below for oracle database.
+oracle_username=""
+oracle_password=""
+
 # Define function "ECHO", append the timestamp at the head of every echo display.
 ECHO () {
 printf "%s " `date '+%Y-%m-%d %H:%M:%S'`

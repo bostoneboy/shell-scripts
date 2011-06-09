@@ -7,6 +7,11 @@ log_name="ht-smpp2-`date "+%y%m%d"`.log"
 l_log_dir="/dailycheck/log/dailylog/`date +%Y%m`"
 r_log_dir="/dailycheck/log/globlelog/`date +%Y%m`"
 
+# fill below for remote ftp server.
+remote_ip=""
+remote_username=""
+remote_password=""
+
 echo "`date '+%m-%d %H:%M:%S'` start checking system."
 
 if [ ! -d $l_log_dir ] 
@@ -25,7 +30,7 @@ sh /dailycheck/scripts/dailycheck.sh > $l_log_dir/$log_name
 echo "`date '+%m-%d %H:%M:%S'` create log file [$log_name] success..."
 
 ftp -n<<!
-open $ip_address
+open $remote_ip
 user $remote_username $remote_password
 cd $r_log_dir
 lcd $l_log_dir
