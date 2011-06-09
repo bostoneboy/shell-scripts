@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/sh
 # Author:       Bill JaJa
 # Purpose:      Monoter the web status, send a alert mail when it's not available.
 
